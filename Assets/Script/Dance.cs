@@ -9,10 +9,14 @@ public class Dance : MonoBehaviour
     public bool isDancing = false;
     bool isWaitingExit = false;
     float time;
+    Animator animator;
+    
 
     void Awake()
     {
         mat = this.GetComponent<Renderer>().material;
+        animator = this.GetComponent<Animator>();
+        
     }
     void FixedUpdate()
     {
@@ -21,11 +25,11 @@ public class Dance : MonoBehaviour
                 ExitDance();
     }
 
-    public void GetDance()
+    public void GetDance(GameObject owner)
     {
         isDancing = true;
         isWaitingExit = false;
-        mat.color = Color.green;
+
         mat.SetColor("_EmissionColor",Color.green);
         print("dance");
     }
@@ -41,7 +45,7 @@ public class Dance : MonoBehaviour
     void ExitDance()
     {
          isWaitingExit = false;
-         mat.color = Color.red;
+         
          mat.SetColor("_EmissionColor",Color.red);
          print("exit");
     }

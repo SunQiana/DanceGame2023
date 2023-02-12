@@ -5,11 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    //List<GameObject> npcs;
+   float rangeLength;
 
     void Awake()
     {
-        //npcs = new();
+        rangeLength = this.GetComponent<CapsuleCollider>().radius;
     }
 
     void OnTriggerEnter(Collider other)
@@ -20,13 +20,10 @@ public class Player : MonoBehaviour
 
     void GetDance(Collider other)
     {
-        var dance = other.GetComponent<Dance>();
+        var dance = other.GetComponentInChildren<Dance>();
 
         if(dance.isDancing == false) // 以是否正在跳舞作為是否已在list內的判斷
-        {
-            dance.GetDance();
-            //npcs.Add(other.gameObject);
-        }
+            dance.GetDance(this.gameObject);
     }
 
     void OnTriggerExit(Collider other)
